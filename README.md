@@ -23,23 +23,75 @@
 
 ## 📂 项目结构
 
+├── datasets/ # 【必建】数据集文件夹，新手严格按这个结构放
+
+│ ├── images/ # 图片文件夹
+
+│ │ ├── train/ # 训练集图片
+
+│ │ └── val/ # 验证集图片
+
+│ ├── labels/ # 标签文件夹（和图片一一对应）
+
+│ │ ├── train/ # 训练集标签
+
+│ │ └── val/ # 验证集标签
+
+│ └── data.yaml # 【必改】数据集配置文件
+
+├── runs/ # 自动生成，训练 / 推理结果会存在这里
+
+│ └── detect/
+
+│ ├── train/exp-3/ # 训练输出结果（权重、曲线都在这里）
+
+│ └── predict/ # 推理输出结果（带检测框的图片）
+
 ├── train.py # 模型训练脚本
 
 ├── test.py # 推理测试脚本
 
 ├── requirements.txt # 项目依赖清单
 
-├── results.png # 训练过程曲线图
-
-└── test.jpg # 实际检测效果示例
-
 ---
 
 ## 🚀 快速开始
 ### 1. 安装依赖环境
-pip install -r requirements.txt
-### 2. 模型训练
+
+# 安装所有依赖（conda环境、也可自行安装）
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+### 2. 数据集准备与标注（必须做！）
+
+本项目需要自己标注番茄数据集，分为 **成熟番茄** 和 **未成熟番茄** 两类。
+
+1. 使用 LabelImg 工具标注图片
+2. 标注格式选择 **YOLO 格式（.txt）**
+3. 标签分为两类：
+    
+    - 0：成熟番茄（ripe）
+    - 1：未成熟番茄（unripe）
+    
+4. 图片和标签文件名必须完全一样
+    例如：
+    - 001.jpg
+    - 001.txt
+
+### 3. 配置 data.yaml（非常重要）
+
+确保你的 data.yaml 内容（路径必须正确）
+
+### 4. 模型训练（整合标注完成后执行）
+
+数据集标注完成 → 文件夹结构正确 → 配置好 data.yaml 后，直接运行训练：
+
+
 python train.py
+
+训练过程会自动加载你标注好的数据集，开始学习成熟 / 未成熟番茄特征。
+
+训练完成后，模型会保存在 runs/train/exp/weights/best.pt
+
 ### 3. 图片检测
 python test.py
 
