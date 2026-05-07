@@ -1,0 +1,10 @@
+path: D:/pycharm/example/yolo11/data    #去检索什么文件夹
+
+
+train: image/images/train
+val: image/images/val
+test: image/images/test
+
+nc: 2         #种类的数目
+
+names: ['Riped', 'UnRiped']    #从0到1！！！
