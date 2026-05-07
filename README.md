@@ -15,8 +15,7 @@
 
 ## 📊 模型效果展示
 ### 训练过程曲线
-![训练结果](results.png)
-
+![训练结果](https://github.com/zhouzhou20200/tomato-ripeness-detection/raw/main/results.png)
 ### 检测效果示例
 ![检测效果](test.jpg)
 
